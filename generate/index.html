@@ -2,63 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Makapandwa o Dili Detector</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(to right, #fceabb, #f8b500);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #333;
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.3);
-      padding: 30px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    input[type="text"], input[type="file"] {
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      width: 200px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #ff9800;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background-color: #f57c00;
-    }
-    .result {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    #preview {
-      margin: 10px auto;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -69,54 +15,6 @@
     <button onclick="detectBeauty()" id="checkBtn">I-Check</button>
     <div class="result" id="result"></div>
   </div>
-
-  <script>
-    let hasGenerated = false;
-
-    function previewImage(event) {
-      const reader = new FileReader();
-      reader.onload = function(){
-        const output = document.getElementById('preview');
-        output.src = reader.result;
-        output.style.display = 'block';
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-
-    function detectBeauty() {
-      if (hasGenerated) return; // prevent multiple generations
-
-      const nameInput = document.getElementById("name");
-      const name = nameInput.value.trim();
-      const resultDiv = document.getElementById("result");
-      const checkBtn = document.getElementById("checkBtn");
-
-      if (!name) {
-        resultDiv.innerText = "ngala ningka wata na barmm!";
-        resultDiv.style.color = "black";
-        return;
-      }
-
-      const isMaganda = Math.random() < 0.5;
-
-      const messagesMaganda = [
-        "dili maka pandwaya ka loyal!",
-      ];
-
-      const messagesPanget = [
-        "maka pandwaya sa mga pateman ka gwapo! 😂",
-      ];
-
-      const message = isMaganda
-        ? messagesMaganda[Math.floor(Math.random() * messagesMaganda.length)]
-        : messagesPanget[Math.floor(Math.random() * messagesPanget.length)];
-
-      resultDiv.innerHTML = `${name}, ${isMaganda ? "Seka a <span style='color:green;'>dika pandwaya 😍✨</span>" : "seka a <span style='color:red;'>Maka panwaya 😅💔</span>"}<br><small>${message}</small>`;
-
-      nameInput.disabled = true;
-      checkBtn.disabled = true;
-      hasGenerated = true;
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
